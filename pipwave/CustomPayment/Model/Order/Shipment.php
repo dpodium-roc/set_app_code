@@ -3,6 +3,8 @@ namespace pipwave\CustomPayment\Model\Order;
 
 class Shipment extends \Magento\Sales\Model\Order\Shipment
 {
+    protected $shipmentFactory;
+    protected $transactionFactory;
     public function __construct(
         \Magento\Sales\Model\Order\ShipmentFactory $shipmentFactory,
         \Magento\Framework\DB\TransactionFactory $transactionFactory
@@ -10,17 +12,17 @@ class Shipment extends \Magento\Sales\Model\Order\Shipment
         $this->shipmentFactory = $shipmentFactory;
         $this->transactionFactory = $transactionFactory;
     }
-    protected $shipmentFactory;
-    protected $transactionFactory;
 
     function createShipment($order, $invoice) {
-        try ($shipment) {
-            $shipment = $this->prepareShipment($invoice);
+        try{
+            if($invoice) {
+                $shipment = $this->prepareShipment($invoice);
+            }
             if ($shipment) {
                 $order->setIsInProces(true);
                 $this->transactionFactory->create()->addObject($shipment)->addObject($shipment->getOrder())->save();
             }
-        } catch (\Exception $e) {
+        } catch(\Exception $e) {
             $order->addStatusHistoryComment('Exception message: '.$e->getMessage(), true);
             $order->save();
         }

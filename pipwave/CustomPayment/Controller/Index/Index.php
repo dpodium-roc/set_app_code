@@ -28,13 +28,13 @@ class Index extends \Magento\Framework\App\Action\Action
         $this->information->prepareData();
 
         //variables
-        $data = $this->information->getData();
+        $data = $this->information->getDData();
 
         //get signature param, put into data
         $signatureParam = $this->information->getSignatureParam();
         $data['signature'] = $this->pipwaveIntegration->generatePwSignature($signatureParam);
 
-        $url = $this->information->getUrl();
+        $url = $this->information->getUUrl();
         $agent = $this->pipwaveIntegration->getAgent();
 
         $response = $this->pipwaveIntegration->sendRequestToPw($data, $data['api_key'], $url, $agent);

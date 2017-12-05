@@ -1,7 +1,7 @@
 <?php
 namespace pipwave\CustomPayment\Block;
 
-class InformationNeeded extends \Magento\Checkout\Block\Onepage
+class InformationNeeded extends \Magento\Framework\View\Element\Template
 {
     //object/class
     protected $customer;
@@ -61,7 +61,7 @@ class InformationNeeded extends \Magento\Checkout\Block\Onepage
         $total = $order->getGrandTotal();
 
         //add ngrok url to replace 'localhost'
-        $notificationUrl = 'https://b7407878.ngrok.io/magento2-develop/magento2-develop/notification/notification/index';
+        $notificationUrl = 'https://f1e8dd62.ngrok.io/magento2-develop/magento2-develop/notification/notification/index';
 
         //ship address
         $shipAddress1 = '';
@@ -83,7 +83,7 @@ class InformationNeeded extends \Magento\Checkout\Block\Onepage
             'api_key' => $this->adminConfig->getApiKey(), 
             'api_secret' => $this->adminConfig->getApiSecret(), 
             'txn_id' => $order->getIncrementId(),
-            'amount' => round($total, 2), 
+            'amount' => (float)$total, 
             'currency_code' => $this->_storeManager->getStore()->getCurrentCurrency()->getCode(), 
             'shipping_amount' => $order->getShippingAmount(), 
             'buyer_info' => array(
@@ -163,7 +163,7 @@ class InformationNeeded extends \Magento\Checkout\Block\Onepage
         );
     }
 
-    function getData() {
+    function getDData() {
         return $this->data;
     }
 
@@ -171,7 +171,8 @@ class InformationNeeded extends \Magento\Checkout\Block\Onepage
         return $this->signatureParam;
     }
 
-    function getUrl() {
+    //use getUUrl because parent class got getURl()
+    function getUUrl() {
         return $this->url;
     }
 

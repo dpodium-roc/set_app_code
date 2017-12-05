@@ -87,7 +87,6 @@ define(
                 }
                 
                 return false;
-				
             },
             
             /**
@@ -106,7 +105,7 @@ define(
                         if (result['status']==200){
                             $("#pipform").html("<div id='pwscript' class='text-center'></div><div id='pwloading' style='text-align: center;'><img src='"+result['loadingImageUrl']+"' /></div><script>var pwconfig = "+result['apiData']+";(function (_, p, w, s, d, k) {var a = _.createElement('script');a.setAttribute('src', w + d);a.setAttribute('id', k);setTimeout(function() {var reqPwInit = (typeof reqPipwave != 'undefined');if (reqPwInit) {reqPipwave.require(['pw'], function(pw) {pw.setOpt(pwconfig);pw.startLoad();});} else {_.getElementById(k).parentNode.replaceChild(a, _.getElementById(k));}}, 800);})(document, 'script', '"+result['sdkUrl']+"', 'pw.sdk.min.js', 'pw.sdk.min.js', 'pwscript');</script>");
                         } else {
-                            $("#pipform").html('status: '+result['status']+'<br>message: '+result['message']+'<br> Please try another payment method.');
+                            $("#pipform").html('status: '+result['status']+'<br>message: '+result['message']+'<br> Please try another payment method through reorder at user account.');
                         }  
                     },
                 });
