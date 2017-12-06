@@ -1,12 +1,18 @@
 {
-    "name": "Pipwave/module-custompayment",
+    "name": "magento/module-pipwave",
     "description": "Pipwave Custom Payment",
     "require": {
         "php": "~5.5.0|~5.6.0|~7.0.0",
         "magento/framework": "100.0.*",
         "magento/module-ui": "100.0.*",
-        "magento/module-config": "100.0.*",
-        "magento/module-checkout": "100.0.*"
+        "magento/module-config": "100.3.*",
+        "magento/module-store": "100.3.*",
+        "magento/module-checkout": "100.3.*",
+        "magento/module-sales": "100.3.*",
+        "magento/module-quote": "100.3.*",
+        "magento/module-customer": "100.3.*",
+        "magento/module-payment": "100.3.*",
+        "magento/module-backend": "100.3.*",
     },
     "type": "magento2-module",
     "version": "100.0.0",
@@ -16,6 +22,6 @@
     ],
     "autoload": {
         "files": [ "registration.php" ],
-        "psr-4": { "Pipwave\\CustomPayment\\": "" }
+        "psr-4": { "Magento\\Pipwave\\": "" }
     }
 }
