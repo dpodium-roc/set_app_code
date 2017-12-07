@@ -15,22 +15,7 @@ class AdditionalConfigProvider implements \Magento\Checkout\Model\ConfigProvider
 
     function getConfig()
     {
-        
-        //this is going to be called in view\frontend\web\js\view\payment\method-renderer\custompayment.js
-        $loadingimg = $this->information->get_loading_img_url();
-        
-        $sdkurl = '//staging-checkout.Pipwave.com/sdk/';
-        
-        //get apidata later [this need modify]
-        $apidata = json_encode(
-            [
-                'api_key' => '7oB7eyKpFg60Wn9jAJ6kp407jJqxyk3R9gEVaCTg',
-                'token' => '683yoJ9XShzrD7oYGSWgF_iDo5Uz3tqm'
-            ]);
-        
-        $response = 200;
-        $url = $this->information->getCompleteUrl();
-        
+
         $config =
         [
             'payment' => 
@@ -41,21 +26,7 @@ class AdditionalConfigProvider implements \Magento\Checkout\Model\ConfigProvider
                     //set $image_url = *something*
                     //then use magento framework to get url
                     //set $image_url into 'pipwaveImageSrc'
-                    'pipwaveImageSrc' => 'https://www.Pipwave.com/wp-content/themes/zerif-lite-child/images/logo_bnw.png',
-                    'payform' =>
-                    [
-                        'loadingimg' => $loadingimg,
-                        'sdkurl' => $sdkurl,
-                        'apidata' => $apidata
-                    ],
-                    'request' =>
-                    [
-                        'isResponseGood' => $response
-                    ],
-                    'controller' =>
-                    [
-                        'url' => $url
-                    ]
+                    'pipwaveImageSrc' => 'https://www.Pipwave.com/wp-content/themes/zerif-lite-child/images/logo_bnw.png'
                 ]
             ]
         ];
